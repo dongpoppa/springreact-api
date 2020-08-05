@@ -14,11 +14,7 @@ public interface GameService {
 
     Optional<Game> findByName(String name);
 
-    List<Game> findAll();
-
-    Page<Game> findAll(Pageable pageable);
-
-    //Page<Game> findGamesByCategory(String cateName, Pageable pageable);
+    List<Game> findAllExists();
 
     List<Game> findAllDeleted();
 

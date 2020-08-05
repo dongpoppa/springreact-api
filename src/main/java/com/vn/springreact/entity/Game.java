@@ -8,8 +8,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -61,7 +60,7 @@ public class Game implements Serializable {
     @Column(name = "is_del")
     private String status;
 
-    @JsonManagedReference
+
     @ManyToMany
     @JoinTable(
             name = "category_game",

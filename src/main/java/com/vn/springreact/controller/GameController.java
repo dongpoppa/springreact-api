@@ -5,11 +5,11 @@ import com.vn.springreact.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
-@RequestMapping(value="/api", produces = "application/json")
+@CrossOrigin(origins = "*")
 public class GameController {
 
     @Autowired
@@ -17,7 +17,7 @@ public class GameController {
 
     @RequestMapping(value = "/games", method = RequestMethod.GET)
     List<Game> list() {
-        return gameService.findAll();
+        return gameService.findAllExists();
     }
 
     @RequestMapping(value = "/games/{id}", method = RequestMethod.PUT)
@@ -25,6 +25,29 @@ public class GameController {
         Game game = gameService.findById(id).orElse(null);
         if(game != null){
             game = data;
+            System.out.println(1);
+            gameService.save(game);
+            return true;
+        }
+        return false;
+    }
+
+    @RequestMapping(value = "/games/{id}", method = RequestMethod.DELETE)
+    boolean delete(@PathVariable int id) {
+        Game game = gameService.findById(id).orElse(null);
+        if(game != null){
+            System.out.println(123);
+            game.setStatus(String.valueOf(new Date()));
+            gameService.save(game);
+            return true;
+        }
+        return false;
+    }
+
+
+    @RequestMapping(value = "/games", method = RequestMethod.POST)
+    boolean create(@RequestBody Game game) {
+        if(game != null){
             gameService.save(game);
             return true;
         }

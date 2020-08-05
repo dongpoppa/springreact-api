@@ -23,21 +23,7 @@ public class GameServiceImpl implements GameService {
     }
 
 
-    @Override
-    public Page<Game> findAll(Pageable pageable) {
-        return gameRepo.findAll(pageable);
-    }
 
-//    @Override
-//    public Page<Game> findGamesByCategory(String cateName, Pageable pageable) {
-//        return gameRepo.findGamesByCategory(cateName, pageable);
-//    }
-
-
-    @Override
-    public List<Game> findAll() {
-        return gameRepo.findAll();
-    }
 
 
     public List<Game> findAll(String category) {
@@ -47,6 +33,11 @@ public class GameServiceImpl implements GameService {
     @Override
     public List<Game> findAllDeleted() {
         return gameRepo.findAllDeleted();
+    }
+
+    @Override
+    public List<Game> findAllExists() {
+        return gameRepo.findAllExists();
     }
 
     @Override

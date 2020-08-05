@@ -13,6 +13,8 @@ public interface GameRepo extends JpaRepository<Game,Integer> {
     @Query("SELECT g FROM Game g WHERE g.status is not null")
     List<Game> findAllDeleted();
 
+    @Query("SELECT g FROM Game g WHERE g.status is null")
+    List<Game> findAllExists();
 //    @Query("SELECT g FROM Game g JOIN g.categories c WHERE c.name= :cateName")
 //    Page<Game> findGamesByCategory(String cateName, Pageable pageable);
 }
