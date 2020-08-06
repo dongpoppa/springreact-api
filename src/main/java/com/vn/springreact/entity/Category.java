@@ -1,6 +1,7 @@
 package com.vn.springreact.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
@@ -8,7 +9,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -25,8 +27,9 @@ public class Category implements Serializable {
     @Column(name = "decription",columnDefinition = "nvarchar(255)")
     private String decription;
 
-//    @JsonIgnore
-//    @ManyToMany(mappedBy = "categories")
-//    private Set<Game> games;
+
+
+    @ManyToMany(mappedBy = "categories",fetch = FetchType.LAZY)
+    private Set<Game> games;
 
 }

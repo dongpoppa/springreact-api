@@ -8,7 +8,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -61,7 +62,7 @@ public class Game implements Serializable {
     private String status;
 
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "category_game",
             joinColumns = @JoinColumn(name = "game_id"),
