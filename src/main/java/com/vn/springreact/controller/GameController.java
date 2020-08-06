@@ -34,7 +34,6 @@ public class GameController {
         Game game = gameService.findById(id).orElse(null);
         if(game != null){
             game = data;
-            System.out.println(1);
             gameService.save(game);
             return true;
         }
@@ -45,7 +44,6 @@ public class GameController {
     boolean delete(@PathVariable int id) {
         Game game = gameService.findById(id).orElse(null);
         if(game != null){
-            System.out.println(123);
             game.setStatus(String.valueOf(new Date()));
             gameService.save(game);
             return true;
