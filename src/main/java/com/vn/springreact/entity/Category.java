@@ -25,8 +25,8 @@ public class Category implements Serializable {
     @Column(name = "decription",columnDefinition = "nvarchar(255)")
     private String decription;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "categories")
-    private Set<Game> games;
+//    @JsonIgnore
+//    @ManyToMany(mappedBy = "categories")
+//    private Set<Game> games;
 
 }
