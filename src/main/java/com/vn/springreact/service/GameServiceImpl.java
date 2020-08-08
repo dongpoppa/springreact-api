@@ -21,11 +21,6 @@ public class GameServiceImpl implements GameService {
     public Optional<Game> findByName(String name) {
         return null;
     }
-    
-
-    public List<Game> findAll(String category) {
-        return gameRepo.findAll();
-    }
 
     @Override
     public List<Game> findAllDeleted() {

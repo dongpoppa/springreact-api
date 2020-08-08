@@ -29,11 +29,14 @@ public class GameController {
         return gameDtos;
     }
 
-    @RequestMapping(value = "/games/{id}", method = RequestMethod.GET)
-    GameDto getbyId(@PathVariable int id) {
+    @RequestMapping(value = "/games-remove", method = RequestMethod.GET)
+    List<GameDto> listRemove() {
         ModelMapper modelMapper = new ModelMapper();
-        GameDto gameDto =  modelMapper.map(gameService.findById(id).get(),GameDto.class);
-        return gameDto;
+        List<GameDto> gameDtos = gameService.findAllDeleted()
+                .stream()
+                .map(game -> modelMapper.map(game,GameDto.class))
+                .collect(Collectors.toList());
+        return gameDtos;
     }
 
     @RequestMapping(value = "/games/{id}", method = RequestMethod.PUT)
@@ -41,6 +44,16 @@ public class GameController {
         Game game = gameService.findById(id).orElse(null);
         if(game != null){
             game = data;
+            gameService.save(game);
+            return true;
+        }
+        return false;
+    }
+    @RequestMapping(value = "/games/restore/{id}", method = RequestMethod.PUT)
+    boolean update(@PathVariable int id) {
+        Game game = gameService.findById(id).orElse(null);
+        if(game != null){
+            game.setStatus(null);
             gameService.save(game);
             return true;
         }
