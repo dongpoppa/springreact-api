@@ -29,6 +29,13 @@ public class GameController {
         return gameDtos;
     }
 
+    @RequestMapping(value = "/games/{id}", method = RequestMethod.GET)
+    GameDto getbyId(@PathVariable int id) {
+        ModelMapper modelMapper = new ModelMapper();
+        GameDto gameDto =  modelMapper.map(gameService.findById(id).get(),GameDto.class);
+        return gameDto;
+    }
+
     @RequestMapping(value = "/games/{id}", method = RequestMethod.PUT)
     boolean update(@PathVariable int id,@RequestBody Game data) {
         Game game = gameService.findById(id).orElse(null);

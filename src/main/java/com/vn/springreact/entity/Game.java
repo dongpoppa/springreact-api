@@ -46,7 +46,7 @@ public class Game implements Serializable {
     @Column(name = "publisher",columnDefinition = "nvarchar(255)")
     private String publisher;
 
-    @Column(name = "rules",columnDefinition = "nvarchar(255)")
+    @Column(name = "rules",columnDefinition = "nvarchar(max)")
     private String rules;
 
     @Column(name = "quantity")
