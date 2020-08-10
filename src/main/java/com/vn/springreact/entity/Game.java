@@ -72,4 +72,12 @@ public class Game implements Serializable {
 
     @OneToMany(mappedBy = "game")
     private Set<OrderDetail> orderDetails;
+
+    @Override
+    public String toString() {
+        return "Game{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

@@ -26,6 +26,7 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryRepo.findAll();
     }
 
+
     @Override
     public Optional<Category> findById(int id) {
         return categoryRepo.findById(id);
@@ -37,8 +38,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void remove(int id) {
-
+    public void remove(Category model) {
+        categoryRepo.delete(model);
     }
 
     @Override

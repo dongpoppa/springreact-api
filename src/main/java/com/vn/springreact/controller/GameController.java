@@ -38,6 +38,15 @@ public class GameController {
                 .collect(Collectors.toList());
         return gameDtos;
     }
+    @RequestMapping(value = "/games-by-category/{id}", method = RequestMethod.GET)
+    List<GameDto> listGamesbyCategory(@PathVariable int id) {
+        ModelMapper modelMapper = new ModelMapper();
+        List<GameDto> gameDtos = gameService.findGamesByCategory(id)
+                .stream()
+                .map(game -> modelMapper.map(game,GameDto.class))
+                .collect(Collectors.toList());
+        return gameDtos;
+    }
 
     @RequestMapping(value = "/games/{id}", method = RequestMethod.PUT)
     boolean update(@PathVariable int id,@RequestBody Game data) {

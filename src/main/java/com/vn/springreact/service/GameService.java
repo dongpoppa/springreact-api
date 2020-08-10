@@ -18,6 +18,8 @@ public interface GameService {
 
     List<Game> findAllDeleted();
 
+    List<Game> findGamesByCategory(int id);
+
     Optional<Game>  findById(int id);
 
     void save(Game model);

@@ -1,6 +1,7 @@
 package com.vn.springreact.service;
 
 
+import com.vn.springreact.entity.Category;
 import com.vn.springreact.entity.Game;
 import com.vn.springreact.repository.GameRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,10 @@ public class GameServiceImpl implements GameService {
     public void remove(int id) {
 
     }
-
+    @Override
+    public List<Game> findGamesByCategory(int id){
+      return  gameRepo.findGamesByCategory(id);
+    }
     @Override
     public void update(int id, Game model) {
 

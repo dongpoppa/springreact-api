@@ -13,11 +13,13 @@ public interface CategoryService {
 
     List<Category> findAll();
 
+
+
     Optional<Category> findById(int id);
 
     void save(Category model);
 
-    void remove(int id);
+    void remove(Category model);
 
     void update(int id, Category model);
 }
