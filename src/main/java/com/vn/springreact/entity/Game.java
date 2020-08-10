@@ -69,4 +69,7 @@ public class Game implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     private Set<Category> categories;
+
+    @OneToMany(mappedBy = "game")
+    private Set<OrderDetail> orderDetails;
 }

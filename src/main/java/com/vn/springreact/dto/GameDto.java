@@ -1,6 +1,7 @@
 package com.vn.springreact.dto;
 
 import com.vn.springreact.entity.Category;
+import com.vn.springreact.entity.OrderDetail;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -41,4 +42,6 @@ public class GameDto implements Serializable {
     private String status;
 
     private Set<CategoryInfo> categories;
+
+    private Set<OrderDetailInfo> orderDetails;
 }

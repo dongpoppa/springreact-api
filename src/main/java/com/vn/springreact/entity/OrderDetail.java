@@ -6,8 +6,8 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Getter
 @Setter
+@Getter
 @Entity
 @Table(name = "order_detail")
 public class OrderDetail implements Serializable {

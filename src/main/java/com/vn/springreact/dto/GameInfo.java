@@ -12,6 +12,7 @@ public class GameInfo {
     private int id;
 
     private String name;
+
     private int minPlayer;
 
     private int maxPlayer;
