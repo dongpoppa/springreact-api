@@ -70,8 +70,6 @@ public class Game implements Serializable {
     )
     private Set<Category> categories;
 
-    @OneToMany(mappedBy = "game")
-    private Set<OrderDetail> orderDetails;
 
     @Override
     public String toString() {

@@ -1,10 +1,8 @@
 package com.vn.springreact.dto;
 
-import com.vn.springreact.entity.Order;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
@@ -29,6 +27,5 @@ public class UserDto implements Serializable {
 
     private String status;
 
-    private Set<OrderInfo> orders;
 
 }

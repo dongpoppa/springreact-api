@@ -17,7 +17,7 @@ public class CategoryDto {
 
     private String name;
 
-    private String decription;
+    private String description;
 
     private Set<GameInfo> games;
 

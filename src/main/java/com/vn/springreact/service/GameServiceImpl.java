@@ -48,9 +48,15 @@ public class GameServiceImpl implements GameService {
 
     }
     @Override
-    public List<Game> findGamesByCategory(int id){
-      return  gameRepo.findGamesByCategory(id);
+    public List<Game> findGamesByCategory(int cateId){
+      return  gameRepo.findGamesByCategory(cateId);
     }
+
+    @Override
+    public List<Game> findGamesExistsByCategory(int cateId) {
+        return gameRepo.findGamesExistsByCategory(cateId);
+    }
+
     @Override
     public void update(int id, Game model) {
 

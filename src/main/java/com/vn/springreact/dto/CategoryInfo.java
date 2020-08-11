@@ -14,6 +14,6 @@ public class CategoryInfo  {
 
     private String name;
 
-    private String decription;
+    private String description;
 
 }

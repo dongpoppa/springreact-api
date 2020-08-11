@@ -41,7 +41,7 @@ public class GameController {
     @RequestMapping(value = "/games-by-category/{id}", method = RequestMethod.GET)
     List<GameDto> listGamesbyCategory(@PathVariable int id) {
         ModelMapper modelMapper = new ModelMapper();
-        List<GameDto> gameDtos = gameService.findGamesByCategory(id)
+        List<GameDto> gameDtos = gameService.findGamesExistsByCategory(id)
                 .stream()
                 .map(game -> modelMapper.map(game,GameDto.class))
                 .collect(Collectors.toList());

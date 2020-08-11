@@ -19,5 +19,8 @@ public interface GameRepo extends JpaRepository<Game,Integer> {
     List<Game> findAllExists();
 //    @Query("SELECT g FROM Game g JOIN g.categories c WHERE c.name= :cateName")
 @Query("SELECT g FROM Game g JOIN g.categories c WHERE c.id= :cateId and g.status is null")
+    List<Game> findGamesExistsByCategory(int cateId);
+
+    @Query("SELECT g FROM Game g JOIN g.categories c WHERE c.id= :cateId")
     List<Game> findGamesByCategory(int cateId);
 }

@@ -10,9 +10,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -36,20 +34,21 @@ public class CategoryController {
     }
 
     @RequestMapping(value = "/categories", method = RequestMethod.POST)
-    boolean create(@RequestBody Category category) {
-        if(category != null){
+    boolean saveOrUpdate(@RequestBody Category category) {
+        System.out.println(category);
+        int id = category.getId();
+        if (category != null) {
             categoryService.save(category);
-            return true;
-        }
-        return false;
-    }
-
-    @RequestMapping(value = "/categories/{id}", method = RequestMethod.PUT)
-    boolean update(@PathVariable int id,@RequestBody Category data) {
-        Category category = categoryService.findById(id).orElse(null);
-        if(category != null){
-            category = data;
-            categoryService.save(category);
+            if (id == 0) {
+                category.getGames()
+                        .stream()
+                        .forEach(game -> {
+                            Set<Category> categories = game.getCategories();
+                            categories.add(category);
+                            game.setCategories(categories);
+                            gameService.save(game);
+                        });
+            }
             return true;
         }
         return false;
@@ -58,17 +57,22 @@ public class CategoryController {
     @RequestMapping(value = "/categories/{id}", method = RequestMethod.DELETE)
     boolean delete(@PathVariable int id) {
         Category category = categoryService.findById(id).orElse(null);
-        if(category != null){
-            gameService.findGamesByCategory(id)
-                    .stream()
-                    .forEach(game -> {
-                        Set<Category> categorySet = game.getCategories();
-                        categorySet.remove(category);
-                        game.setCategories(categorySet);
-                         gameService.save(game);
-                    });
-            categoryService.remove(category);
-            return true;
+        if (category != null) {
+            try {
+                gameService.findGamesByCategory(id)
+                        .stream()
+                        .forEach(game -> {
+                            Set<Category> categorySet = game.getCategories();
+                            categorySet.remove(category);
+                            game.setCategories(categorySet);
+                            gameService.save(game);
+                            System.out.println(game);
+                        });
+                categoryService.remove(category);
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
         }
         return false;
     }

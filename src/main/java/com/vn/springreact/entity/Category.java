@@ -24,12 +24,21 @@ public class Category implements Serializable {
     @Column(name = "name",columnDefinition = "nvarchar(255)")
     private String name;
 
-    @Column(name = "decription",columnDefinition = "nvarchar(255)")
-    private String decription;
+    @Column(name = "description",columnDefinition = "nvarchar(255)")
+    private String description;
 
 
 
     @ManyToMany(mappedBy = "categories",fetch = FetchType.LAZY)
     private Set<Game> games;
 
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", games=" + games +
+                '}';
+    }
 }

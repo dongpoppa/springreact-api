@@ -18,7 +18,9 @@ public interface GameService {
 
     List<Game> findAllDeleted();
 
-    List<Game> findGamesByCategory(int id);
+    List<Game> findGamesByCategory(int cateId);
+
+    List<Game> findGamesExistsByCategory(int cateId);
 
     Optional<Game>  findById(int id);
 
